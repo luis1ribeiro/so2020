@@ -2,10 +2,10 @@
 #define FILENAME "file_pessoas"
 
 typedef struct Person{
-  char name[200];
-  int age;
+  char nome[200];
+  int idade;
 } Person;
 
-int new_person(char* name, int age);
-int person_change_age(char* name, int age);
-int person_change_agev2(char* name, int age);
+void new_person(char* name, int age);
+void person_change_age(char* name, int age);
+void person_change_agev2(int pos, int age);

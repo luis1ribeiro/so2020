@@ -12,7 +12,7 @@ ssize_t readln(int fildes, void* buf, size_t nbyte)
     ssize_t size = 0;
     char c;
     char* buff = (char*)buf;
-    while (size < nbyte && readc(fildes, &buf[1]) > 0) {
+    while (size < nbyte && rlbuf(fildes, &buf[i]) > 0) {
       size++;
       if(((char*)buf)[i-1]=='\n')
         return size;
@@ -35,11 +35,13 @@ ssize_t rlbuf(int fd, char*c){
       return -1;
       break;
     case 0:
-      return read_buff_end;
+      return 0;
+      break;
     default:
       read_buff_pos = 0;
+  }
 
-
+  *c = read_buffer[read_buff_pos++];
 
   }
 /*
