@@ -13,7 +13,7 @@ int mysystem (char* command) {
     _exit(0);
   }
 
-  while (wait(NULL) != -1);
+  while (wait(&status) != -1);
   return 0;
 
 }
