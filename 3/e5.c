@@ -8,7 +8,7 @@ int mysystem (char* command) {
 
   int status;
 
-  if(!fork()==0) {
+  if(!fork()) {
     system(command);
     _exit(0);
   }
@@ -20,7 +20,7 @@ int mysystem (char* command) {
 
 int main (int argc, char** argv){
   char comando1[] = "ls -l -a -h";
-  char comando2[] = "sleep 10";
+  char comando2[] = "sleep 1";
   char comando3[] = "ps";
   int ret;
 
