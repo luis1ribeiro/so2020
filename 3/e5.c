@@ -4,36 +4,29 @@
 #include <string.h>
 
 
-int mysystem (char* command) {
+int main(int argc, char** argv){
 
-  int status;
+  int exec_ret,i;
 
-  if(!fork()) {
-    system(command);
-    _exit(0);
+  for(i=1; i<argc; i++) {
+
+    if(!fork()) {
+
+      printf("Sou o filho %d e vou executar o comando %s\n",getpid(),argv[i]);
+
+      exec_ret = execlp(argv[i],argv[i],NULL);
+      perror("reached return");
+      _exit(exec_ret);
+    }
   }
 
-  while (wait(&status) != -1);
-  return 0;
+  for (i=1; i<argc; i++) {
+    printf("Souo pai e estou à espera dos filhos\n");
+    wait(NULL);
+  }
 
-}
-
-int main (int argc, char** argv){
-  char comando1[] = "ls -l -a -h";
-  char comando2[] = "sleep 1";
-  char comando3[] = "ps";
-  int ret;
-
-  printf("a executar mysystem para %s\n",comando1);
-  ret = mysystem(comando1);
-
-  printf("a executar mysystem para %s\n",comando2);
-  mysystem(comando2);
-
-  printf("a executar mysystem para %s\n",comando3);
-  mysystem(comando3);
+  printf("todos os filhos executaram\n");
 
   return 0;
 
 }
-
