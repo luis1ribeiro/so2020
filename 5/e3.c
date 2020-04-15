@@ -12,13 +12,12 @@ int main()
 {
     int pfd[2];
     char buf[1024];
-    pipe(pfd); // cria o pipe
-    if (!fork()) { // filho
+    pipe(pfd);
+    if (!fork()) {
         dup2(pfd[0], 0); // dup do file descriptor de leitura para o std input
         close(pfd[1]); // fecha o descritor de escrita
         execlp("wc", "wc", NULL);
     }
-    // pai
     int n;
     close(pfd[0]); // fecha o descritor de leitura
     while ((n = read(0, buf, 1024)) > 0)
