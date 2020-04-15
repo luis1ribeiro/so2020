@@ -14,8 +14,8 @@ int mysystem (char* command) {
   int i = 0;
 
   fork_ret = fork();
-
   string=strtok(command," ");
+
 
   while(string!=NULL) {
     exec_args[i] = string;
