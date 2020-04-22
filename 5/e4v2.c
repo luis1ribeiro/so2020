@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <sys/wait.h>
 
 /*
  * Escreva um programa que emule o funcionamento do interpretador de comandos na execução encadeada
@@ -22,6 +23,9 @@ int main()
 
     close(pfd[0]);
     close(pfd[1]);
+
+    for (int w; w<2; w++)
+      wait(&w);
 
     return 0;
 }
