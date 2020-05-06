@@ -1,3 +1,4 @@
+#include <string.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <sys/stat.h>
@@ -8,12 +9,14 @@
 
 int main (int argc, char* argv[]) {
 	int fd; int logs; int bytes_read;
-	char buf [MAX_LINE_SIZE];
+	char buf[MAX_LINE_SIZE];
+	char cli[MAX_LINE_SIZE] = "";
+	int i = 0;
 
 	//unlink("~/uni/so/2020/6/pip");
 
 	if (mkfifo("pip", 0666) == -1) {
-		perror("mkfifo");
+		perror("");
   }
 
 
@@ -31,8 +34,11 @@ int main (int argc, char* argv[]) {
 	    }
 
     while((bytes_read = read(fd, &buf, MAX_LINE_SIZE))>0) {
-		  write(logs, &buf, bytes_read);
+      sprintf(cli, "CLIENTE[%d]: ",i++);
+      strcat(cli,buf);
+		  write(logs, &cli, 1024);
 	  }
+	    memset(cli, 0, sizeof(cli));
 	}
 
 	//unlink("~/uni/so/2020/6/pip");
