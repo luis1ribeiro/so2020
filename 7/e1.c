@@ -18,13 +18,13 @@ int qntsvezes;
 void sigint_handler()
 {
     printf("\n");
-    printf("[Time elapsed]: %d\n", time);
+    printf("[Tempo decorrido até Control+C]: %d\n", time);
     qntsvezes++;
 }
 
 void sigquit_handler()
 {
-    printf("[Times booped]: %d\n", qntsvezes);
+    printf("[nmr de Control+C]: %d\n", qntsvezes);
     _exit(0);
 }
 
