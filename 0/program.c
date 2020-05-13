@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
 	vector = malloc(1024*sizeof(int));
 	fill(vector,SIZE_V,5);
 	int c = find(vector,SIZE_V,5);
-       	printf ("%d\n",c);	
+       	printf ("%d\n",c);
 	return 0;
 
 }

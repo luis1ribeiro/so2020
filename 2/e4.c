@@ -12,7 +12,7 @@ int main (){
         }
     }
     // crio dois ciclos for.
-    for(int j = 0; j < 10; j++){
+    for(int i = 0; i < 10; i++){
         int status;
         wait(&status);
         if(WIFEXITED(status)){
